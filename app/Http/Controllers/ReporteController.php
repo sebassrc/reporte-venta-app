@@ -21,13 +21,6 @@ class ReporteController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'fecha' => 'required|date',
-            'isla' => 'required|integer',
-            'estado' => 'required|in:inicio,en progreso,completo',
-            'archivo' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx',
-        ]);
 
         $reporte = new Reporte();
         $reporte->nombre = $request->nombre;
@@ -53,14 +46,7 @@ class ReporteController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'nombre' => 'required|string|max:255',
-            'fecha' => 'required|date',
-            'isla' => 'required|integer',
-            'estado' => 'required|in:inicio,en progreso,completo',
-            'archivo' => 'nullable|file|mimes:pdf,doc,docx,xls,xlsx',
-        ]);
-
+    
         $reporte = Reporte::findOrFail($id);
         $reporte->nombre = $request->nombre;
         $reporte->fecha = $request->fecha;
